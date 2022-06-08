@@ -45,9 +45,10 @@ export const Menus = ({ Items }: MenuProps) => {
 }
 
 const Container = styled.ul`
-  width: 80%;
   list-style-type: none;
   overflow-y: scroll;
+  margin-block-start: 0;
+  padding-inline-start: 0;
 `
 const Li = styled.li`
   display: flex;

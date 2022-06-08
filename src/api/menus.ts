@@ -16,7 +16,6 @@ export const getMenusAll = () => {
 }
 
 export const createMenu = async ({ id, price, name }: Item) => {
-  console.log(id, price, name)
   const { data } = await apiClient.put("/items", {
     price: price,
     name: name,

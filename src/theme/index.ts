@@ -9,6 +9,7 @@ export const RootContainer = styled.div`
 export const Container = styled.div`
   width: 400px;
   min-height: 600px;
+  padding: 1.5rem 3rem;
   background-color: white;
   margin: auto;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -17,4 +18,5 @@ export const Container = styled.div`
 export const Header = styled.h1`
   text-align: center;
   color: #202021;
+  font-weight: 400;
 `

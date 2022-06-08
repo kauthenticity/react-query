@@ -16,6 +16,7 @@ export const MenuInput = () => {
     },
   })
 
+  //onClick={() => mutate({ id: uuidv4(), name, price,)}
   return (
     <Container>
       <Input
@@ -29,7 +30,7 @@ export const MenuInput = () => {
         placeholder="가격"
         onChange={(e) => setPrice(parseInt(e.target.value))}
       />
-      <Button onClick={() => mutate({ id: uuidv4(), name, price })}>Go</Button>
+      <Button>Go</Button>
     </Container>
   )
 }
