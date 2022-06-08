@@ -1,5 +1,8 @@
 import styled from "styled-components"
+import { useMutation } from "react-query"
 import type { Item } from "../types"
+import { FiX } from "react-icons/fi"
+import { deleteMenu } from "../api/menus"
 
 type MenuProps = {
   Items: Item[]
@@ -11,11 +14,19 @@ type MenuItemProps = {
 
 const MenuItem = ({ item }: MenuItemProps) => {
   const { id, price, name } = item
+
+  const { mutate } = useMutation(deleteMenu)
+
   return (
     <Li>
-      {id}
-      {price}
-      {name}
+      <Name>{name}</Name>
+
+      <Right>
+        <Price>{price}원</Price>
+        <a onClick={() => mutate(id)}>
+          <FiX className="icon" color="#121212" />
+        </a>
+      </Right>
     </Li>
   )
 }
@@ -23,12 +34,36 @@ const MenuItem = ({ item }: MenuItemProps) => {
 export const Menus = ({ Items }: MenuProps) => {
   return (
     <Container>
-      {Items.map((item) => (
-        <MenuItem item={item} />
+      {Items?.map((item) => (
+        <MenuItem key={item.id} item={item} />
       ))}
     </Container>
   )
 }
 
-const Container = styled.ul``
-const Li = styled.li``
+const Container = styled.ul`
+  width: 80%;
+  list-style-type: none;
+  overflow-y: scroll;
+`
+const Li = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.3rem 0;
+`
+
+const Right = styled.div`
+  display: flex;
+  align-items: center;
+
+  .icon {
+    cursor: pointer;
+  }
+`
+
+const Price = styled.div`
+  margin-right: 0.5rem;
+`
+
+const Name = styled.div``
