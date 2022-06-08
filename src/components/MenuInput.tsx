@@ -2,12 +2,15 @@ import { useCallback, useState } from "react"
 import styled from "styled-components"
 import { v4 as uuidv4 } from "uuid"
 import { createMenu } from "../api/menus"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 
 export const MenuInput = () => {
+  const queryClient = useQueryClient()
   const [name, setName] = useState<string>("")
   const [price, setPrice] = useState<number>(0)
-  const { mutate } = useMutation(createMenu)
+  const { mutate } = useMutation(createMenu, {
+    onSuccess: () => queryClient.invalidateQueries("menus"),
+  })
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 import type { Item } from "../types"
 import { FiX } from "react-icons/fi"
 import { deleteMenu } from "../api/menus"
@@ -13,9 +13,12 @@ type MenuItemProps = {
 }
 
 const MenuItem = ({ item }: MenuItemProps) => {
+  const queryClient = useQueryClient()
   const { id, price, name } = item
 
-  const { mutate } = useMutation(deleteMenu)
+  const { mutate } = useMutation(deleteMenu, {
+    onSuccess: () => queryClient.invalidateQueries("menus"),
+  })
 
   return (
     <Li>
