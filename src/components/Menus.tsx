@@ -53,7 +53,7 @@ const Li = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0.3rem 0;
+  margin: 0.5rem 0;
 `
 
 const Right = styled.div`

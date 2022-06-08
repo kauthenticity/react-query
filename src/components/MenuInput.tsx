@@ -9,7 +9,11 @@ export const MenuInput = () => {
   const [name, setName] = useState<string>("")
   const [price, setPrice] = useState<number>(0)
   const { mutate } = useMutation(createMenu, {
-    onSuccess: () => queryClient.invalidateQueries("menus"),
+    onSuccess: () => {
+      queryClient.invalidateQueries("menus")
+      setName("")
+      setPrice(0)
+    },
   })
 
   return (
@@ -21,6 +25,7 @@ export const MenuInput = () => {
       />
       <Input
         type="number"
+        value={price}
         placeholder="가격"
         onChange={(e) => setPrice(parseInt(e.target.value))}
       />
