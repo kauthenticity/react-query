@@ -10,11 +10,13 @@ type MenuProps = {
 
 type MenuItemProps = {
   item: Item
+  key: string
 }
 
 type CategoryItemProps = {
   Items: Item[]
   category: string
+  key: string
 }
 
 const MenuItem = ({ item }: MenuItemProps) => {
@@ -39,15 +41,13 @@ const MenuItem = ({ item }: MenuItemProps) => {
 }
 
 const CategoryItem = ({ Items, category }: CategoryItemProps) => {
-  console.log(Items[0].category)
   const menus = Items.filter((item) => item.category == category)
-  console.log(menus)
   return (
     <CategoryItemContainer>
       <Category>{category}</Category>
       <Ul>
         {menus.map((menu) => (
-          <MenuItem item={menu} />
+          <MenuItem key={menu.name} item={menu} />
         ))}
       </Ul>
     </CategoryItemContainer>
@@ -58,7 +58,7 @@ export const Menus = ({ Items }: MenuProps) => {
   return (
     <Container>
       {categories.map((category) => (
-        <CategoryItem category={category} Items={Items} />
+        <CategoryItem key={category} category={category} Items={Items} />
       ))}
     </Container>
   )
