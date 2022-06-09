@@ -8,7 +8,7 @@ export const RootContainer = styled.div`
 
 export const Container = styled.div`
   width: 400px;
-  min-height: 600px;
+  height: 600px;
   padding: 1.5rem 3rem;
   background-color: white;
   margin: auto;

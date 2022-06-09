@@ -31,7 +31,7 @@ const MenuItem = ({ item }: MenuItemProps) => {
       <Right>
         <Price>{Number(price).toLocaleString("ko-KR")}</Price>
         <A onClick={() => mutate(id)}>
-          <FiX className="icon" color="#121212" />
+          <FiX className="icon" color="#121212" size={10} />
         </A>
       </Right>
     </Li>
@@ -74,10 +74,11 @@ const Category = styled.span`
 
 const Container = styled.div`
   overflow-y: scroll;
+  height: 450px;
 `
 
 const CategoryItemContainer = styled.div`
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 `
 
 const Ul = styled.ul`
@@ -91,7 +92,7 @@ const Li = styled.li`
   align-items: center;
   justify-content: space-between;
   margin: 0.5rem 0;
-  padding: 0 1rem;
+  padding-inline-start: 1rem;
   //font-size: 0.8rem;
 `
 
