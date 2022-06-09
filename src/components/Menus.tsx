@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useMutation, useQueryClient } from "react-query"
-import type { Item } from "../types"
+import { Item, categories } from "../types"
 import { FiX } from "react-icons/fi"
 import { deleteMenu } from "../api/menus"
 
@@ -10,6 +10,11 @@ type MenuProps = {
 
 type MenuItemProps = {
   item: Item
+}
+
+type CategoryItemProps = {
+  Items: Item[]
+  category: string
 }
 
 const MenuItem = ({ item }: MenuItemProps) => {
@@ -23,30 +28,61 @@ const MenuItem = ({ item }: MenuItemProps) => {
   return (
     <Li>
       <Name>{name}</Name>
-
       <Right>
-        <Price>{price}원</Price>
-        <a onClick={() => mutate(id)}>
+        <Price>{Number(price).toLocaleString("ko-KR")}</Price>
+        <A onClick={() => mutate(id)}>
           <FiX className="icon" color="#121212" />
-        </a>
+        </A>
       </Right>
     </Li>
+  )
+}
+
+const CategoryItem = ({ Items, category }: CategoryItemProps) => {
+  console.log(Items[0].category)
+  const menus = Items.filter((item) => item.category == category)
+  console.log(menus)
+  return (
+    <CategoryItemContainer>
+      <Category>{category}</Category>
+      <Ul>
+        {menus.map((menu) => (
+          <MenuItem item={menu} />
+        ))}
+      </Ul>
+    </CategoryItemContainer>
   )
 }
 
 export const Menus = ({ Items }: MenuProps) => {
   return (
     <Container>
-      {Items?.map((item) => (
-        <MenuItem key={item.id} item={item} />
+      {categories.map((category) => (
+        <CategoryItem category={category} Items={Items} />
       ))}
     </Container>
   )
 }
 
-const Container = styled.ul`
-  list-style-type: none;
+const A = styled.a`
+  display: flex;
+`
+
+const Category = styled.span`
+  font-size: 1.1rem;
+`
+
+const Container = styled.div`
   overflow-y: scroll;
+`
+
+const CategoryItemContainer = styled.div`
+  margin: 2rem 0;
+`
+
+const Ul = styled.ul`
+  list-style-type: none;
+
   margin-block-start: 0;
   padding-inline-start: 0;
 `
@@ -55,6 +91,8 @@ const Li = styled.li`
   align-items: center;
   justify-content: space-between;
   margin: 0.5rem 0;
+  padding: 0 1rem;
+  //font-size: 0.8rem;
 `
 
 const Right = styled.div`

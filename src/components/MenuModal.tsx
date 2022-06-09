@@ -142,7 +142,7 @@ const Option = styled.option``
 const Select = styled.select`
   width: 100%;
   border-color: #d7d7d9;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 10px;
   outline: none;
   margin-top: 0.25rem;
@@ -166,7 +166,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-  border-radius: 12px;
+  //border-radius: 12px;
   width: 400px;
   height: 360px;
   top: 50%;

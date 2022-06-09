@@ -15,11 +15,12 @@ export const getMenusAll = () => {
   return Items
 }
 
-export const createMenu = async ({ id, price, name }: Item) => {
+export const createMenu = async ({ id, price, name, category }: Item) => {
   const { data } = await apiClient.put("/items", {
     price: price,
     name: name,
     id: id,
+    category: category,
   })
 
   return data

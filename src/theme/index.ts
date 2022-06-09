@@ -19,4 +19,6 @@ export const Header = styled.h1`
   text-align: center;
   color: #202021;
   font-weight: 400;
+  margin: 1rem 0;
+  letter-spacing: 2px;
 `

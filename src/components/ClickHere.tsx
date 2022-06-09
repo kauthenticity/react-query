@@ -21,10 +21,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
 `
 
 const A = styled.a`
   cursor: pointer;
+  font-size: 0.9rem;
   &:after {
     display: block;
     content: "";
